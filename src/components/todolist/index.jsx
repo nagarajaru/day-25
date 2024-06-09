@@ -1,25 +1,25 @@
 import { useContext, useState, useEffect } from "react";
 import style from "./style.css";
-import { TodoContext } from "../../store/TodoContext";
-import TodoItem from "./TodoItem";
+import { todoContext } from "../store/todocontext";
+import { todoItem } from "../todoitem";
 
 const TodoList = () => {
-  const { todoItems } = useContext(TodoContext);
-  const [filteredTodoItems, setFilteredTodoItems] = useState(todoItems);
+  const { todoItems } = useContext(todoContext);
+  const [filteredtodoItems, setFilteredtodoItems] = useState(todoItems);
   const [filterParameter, setFilterParameter] = useState("all");
 
   useEffect(() => {
-    setFilteredTodoItems(todoItems);
+    setFilteredtodoItems(todoItems);
   }, [todoItems]);
 
-  const filterTodo = () => {
+  const filtertodo = () => {
     const filteredItems = todoItems.filter((todo) => todo.isCompleted === true);
-    setFilteredTodoItems(filteredItems);
+    setFilteredtodoItems(filteredItems);
     setFilterParameter("completed");
   };
 
-  const clearTodo = () => {
-    setFilteredTodoItems(todoItems);
+  const cleartodo = () => {
+    setFilteredtodoItems(todoItems);
     setFilterParameter("all");
   };
 
@@ -27,7 +27,7 @@ const TodoList = () => {
     <div>
       <div className={style.filterWrapper}>
         <p
-          onClick={clearTodo}
+          onClick={cleartodo}
           className={`${style.filterText} ${
             filterParameter === "all" && style.selected
           }`}
@@ -36,7 +36,7 @@ const TodoList = () => {
         </p>
         <p>&nbsp;/&nbsp;</p>
         <p
-          onClick={filterTodo}
+          onClick={filtertodo}
           className={`${style.filterText} ${
             filterParameter === "completed" && style.selected
           }`}
@@ -45,13 +45,13 @@ const TodoList = () => {
         </p>
       </div>
       <ul className={style.list}>
-        {filteredTodoItems.length > 0 &&
-          filteredTodoItems.map((todo) => (
-            <TodoItem key={todo.id} data={todo} />
+        {filteredtodoItems.length > 0 &&
+          filteredtodoItems.map((todo) => (
+            <todoItem key={todo.id} data={todo} />
           ))}
       </ul>
     </div>
   );
 };
 
-export default TodoList;
+export default todoList;

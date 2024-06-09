@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import { ThemeProvider } from "./store/themecontext";
-import { TodoProvider } from "./store/todocontext";
+import App from "./App.jsx";
+import { themeProvider } from "./components/store/themecontext";
+import { todoProvider } from "./components/store/todocontext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <TodoProvider>
+    <themeProvider>
+      <todoProvider>
         <App />
-      </TodoProvider>
-    </ThemeProvider>
+      </todoProvider>
+    </themeProvider>
   </React.StrictMode>
 );
